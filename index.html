@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David Fernández Alejo</title>
+<meta name="description" content="David Fernández Alejo — Platform and Security Engineer at GMV. Apache Kafka, secure infrastructure, mission-critical systems and cybersecurity.">
+<meta name="author" content="David Fernández Alejo">
+<meta property="og:type" content="website">
+<meta property="og:title" content="David Fernández Alejo — Platform & Security Engineer">
+<meta property="og:description" content="Apache Kafka, secure infrastructure, mission-critical systems and cybersecurity.">
+<!-- Adjust if the repository is not named david10923.github.io -->
+<meta property="og:url" content="https://david10923.github.io/">
+<link rel="canonical" href="https://david10923.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='32' fill='%234f46e5'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Segoe UI,Arial' font-weight='700' font-size='26' fill='white'>DF</text></svg>">
+<style>
+  /* ---------- Tokens: light theme ---------- */
+  :root {
+    color-scheme: light;
+    --bg:          #f6f7f9;
+    --surface:     #ffffff;
+    --surface-2:   #f2f3f5;
+    --border:      #e3e5ea;
+    --text:        #16181d;
+    --muted:       #5c6270;
+    --accent:      #4f46e5;
+    --accent-soft: #eef0fe;
+    --accent-ink:  #ffffff;
+    --shadow:      0 1px 2px rgba(16, 18, 24, .05), 0 8px 24px rgba(16, 18, 24, .05);
+    --radius:      14px;
+    --radius-s:    9px;
+    --max:         880px;
+  }
+
+  /* ---------- Tokens: dark theme from the OS (unless light is forced) ---------- */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg:          #0e1014;
+      --surface:     #171a21;
+      --surface-2:   #1f232c;
+      --border:      #2a2f3a;
+      --text:        #e9eaee;
+      --muted:       #9aa1b1;
+      --accent:      #8b85ff;
+      --accent-soft: #23233f;
+      --accent-ink:  #14121f;
+      --shadow:      0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+    }
+  }
+
+  /* ---------- Tokens: dark theme forced with the toggle ---------- */
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg:          #0e1014;
+    --surface:     #171a21;
+    --surface-2:   #1f232c;
+    --border:      #2a2f3a;
+    --text:        #e9eaee;
+    --muted:       #9aa1b1;
+    --accent:      #8b85ff;
+    --accent-soft: #23233f;
+    --accent-ink:  #14121f;
+    --shadow:      0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px rgba(0, 0, 0, .35);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: clamp(20px, 5vw, 56px) clamp(16px, 4vw, 24px) 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .stack { display: flex; flex-direction: column; gap: 20px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: clamp(20px, 4vw, 32px);
+  }
+
+  h1, h2, h3 { line-height: 1.25; margin: 0; letter-spacing: -.02em; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1rem; }
+  p  { margin: 0 0 1em; }
+  p:last-child { margin-bottom: 0; }
+  a  { color: var(--accent); }
+
+  :where(a, button):focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Header ---------- */
+  .hero { display: flex; flex-direction: column; gap: 20px; }
+  .hero-row { display: flex; align-items: center; gap: 18px; }
+
+  .avatar {
+    flex: 0 0 auto;
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    background: linear-gradient(140deg, #4f46e5, #9333ea);
+    color: #fff;
+    font-size: 1.5rem; font-weight: 650; letter-spacing: .02em;
+    user-select: none;
+  }
+
+  .identity { min-width: 0; }
+  .identity h1 { font-size: clamp(1.55rem, 4.8vw, 2.1rem); }
+  .role { margin: 2px 0 0; font-weight: 600; color: var(--accent); }
+  .sub  { margin: 2px 0 0; color: var(--muted); font-size: .93rem; }
+
+  .theme-toggle {
+    margin-left: auto;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    width: 42px; height: 42px;
+    display: grid; place-items: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: var(--surface-2);
+    color: var(--text);
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background .18s, transform .18s;
+  }
+  .theme-toggle:hover { background: var(--accent-soft); transform: translateY(-1px); }
+
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .links a {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--muted);
+    text-decoration: none;
+    font-size: .88rem;
+    transition: color .18s, border-color .18s, background .18s, filter .18s;
+  }
+  .links a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+  .links a.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .links a.primary:hover { filter: brightness(1.08); color: var(--accent-ink); background: var(--accent); }
+  .links svg { width: 16px; height: 16px; flex: 0 0 auto; }
+  .ico-fill   { fill: currentColor; }
+  .ico-stroke { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .nav {
+    display: flex; flex-wrap: wrap; gap: 4px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .nav a {
+    padding: 5px 12px;
+    border-radius: 999px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: .88rem;
+    transition: background .18s, color .18s;
+  }
+  .nav a:hover { background: var(--surface-2); color: var(--text); }
+
+  /* ---------- Sections ---------- */
+  .eyebrow {
+    display: block;
+    font-size: .74rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .1em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .section-head { margin-bottom: 18px; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .fact {
+    padding: 12px 14px;
+    border-radius: var(--radius-s);
+    background: var(--surface-2);
+  }
+  .fact strong { display: block; font-size: .95rem; }
+  .fact span   { color: var(--muted); font-size: .82rem; }
+
+  .job + .job { margin-top: 26px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .job-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+    gap: 4px 16px;
+    margin-bottom: 10px;
+  }
+  .job-head .where { color: var(--muted); font-weight: 400; }
+  .when { color: var(--muted); font-size: .86rem; white-space: nowrap; }
+
+  ul.bullets { margin: 0; padding-left: 1.15em; }
+  ul.bullets li { margin: 0 0 6px; }
+  ul.bullets li::marker { color: var(--accent); }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: .78rem; font-weight: 550;
+  }
+
+  /* ---------- Projects ---------- */
+  .featured {
+    padding: 22px;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    background: linear-gradient(180deg, var(--accent-soft), transparent 70%);
+    margin-bottom: 26px;
+  }
+  .featured h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .featured .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; }
+
+  .group-title {
+    font-size: .8rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted);
+    margin: 0 0 12px;
+  }
+  .group-title:not(:first-child) { margin-top: 26px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+  }
+  .project {
+    display: flex; flex-direction: column;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-s);
+    color: inherit;
+    text-decoration: none;
+    transition: border-color .18s, transform .18s, background .18s;
+  }
+  .project:hover { border-color: var(--accent); background: var(--surface-2); transform: translateY(-2px); }
+  .project h3 { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  .project h3 .arrow { color: var(--muted); font-weight: 400; transition: color .18s; }
+  .project:hover h3 .arrow { color: var(--accent); }
+  .project p { color: var(--muted); font-size: .9rem; flex: 1 1 auto; }
+  .project .tags { margin-top: 12px; }
+
+  .text-link { font-weight: 600; text-decoration: none; }
+  .text-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- Skills ---------- */
+  .skills { display: grid; gap: 14px; }
+  .skill-row {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 6px 16px;
+    align-items: baseline;
+  }
+  .skill-row + .skill-row { padding-top: 14px; border-top: 1px solid var(--border); }
+  .skill-row > strong { font-size: .92rem; }
+  .skill-row .tags { margin-top: 0; }
+  .skill-row .tag { background: var(--surface-2); color: var(--text); font-weight: 450; }
+
+  /* ---------- Education & languages ---------- */
+  .two-col { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+  .entry + .entry { margin-top: 16px; }
+  .entry h3 { margin-bottom: 2px; }
+  .entry p { color: var(--muted); font-size: .92rem; }
+
+  .lang { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; }
+  .lang + .lang { border-top: 1px solid var(--border); }
+  .lang span:last-child { color: var(--muted); }
+
+  .footer { text-align: center; color: var(--muted); font-size: .82rem; }
+
+  @media (max-width: 640px) {
+    .two-col { grid-template-columns: 1fr; }
+    .skill-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .hero { position: relative; }
+    .hero-row { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .avatar { width: 60px; height: 60px; font-size: 1.25rem; }
+    .theme-toggle { position: absolute; top: 18px; right: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+</style>
+<script>
+  /* Apply the saved theme before first paint to avoid a flash on reload. */
+  (function () {
+    try {
+      var saved = localStorage.getItem('dfa.theme');
+      if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
+    } catch (e) { /* storage unavailable: follow the OS preference */ }
+  })();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===================== Header ===================== -->
+  <header class="card hero">
+    <div class="hero-row">
+      <div class="avatar" aria-hidden="true">DF</div>
+      <div class="identity">
+        <h1>David Fernández Alejo</h1>
+        <p class="role">Platform &amp; Security Engineer</p>
+        <p class="sub">Software Engineer at GMV · Galileo Project · Madrid, Spain</p>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme" title="Toggle theme">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
+
+    <nav class="links" aria-label="Profiles">
+      <!-- The PDF must sit next to index.html in the repository -->
+      <a class="primary" href="David_Fernandez_CV.pdf" download>
+        <svg class="ico-stroke" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download CV
+      </a>
+      <a href="https://github.com/david10923" target="_blank" rel="noopener noreferrer">
+        <svg class="ico-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        GitHub
+      </a>
+      <a href="https://linkedin.com/in/david-f-0748981b8" target="_blank" rel="noopener noreferrer">
+        <svg class="ico-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-1 1.83-2.06 3.76-2.06 4.02 0 4.76 2.65 4.76 6.09V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21h-4V9Z"/></svg>
+        LinkedIn
+      </a>
+    </nav>
+
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+    </nav>
+  </header>
+
+  <main class="stack">
+
+    <!-- ===================== About ===================== -->
+    <section class="card" id="about" aria-labelledby="about-title">
+      <div class="section-head">
+        <span class="eyebrow">About</span>
+        <h2 id="about-title">Secure platforms for mission-critical systems</h2>
+      </div>
+      <p>
+        Platform and Security Engineer with hands-on experience in <strong>Apache Kafka</strong>, secure
+        infrastructure and mission-critical environments. Skilled in authentication and authorization
+        (LDAP, Kerberos, OAuth2), system hardening, automation and troubleshooting across distributed systems.
+      </p>
+      <p>
+        At GMV I work on the <strong>Galileo</strong> satellite navigation programme, operating services in
+        controlled and air-gapped environments under strict regulatory frameworks. I hold a B.Sc. in Software
+        Engineering from Universidad Complutense de Madrid and an M.Sc. in Cybersecurity from IMF Smart
+        Education &amp; Deloitte.
+      </p>
+      <div class="facts">
+        <div class="fact"><strong>GMV · Galileo</strong><span>Since September 2021</span></div>
+        <div class="fact"><strong>M.Sc. Cybersecurity</strong><span>IMF &amp; Deloitte</span></div>
+        <div class="fact"><strong>Apache Kafka</strong><span>Security &amp; operations</span></div>
+        <div class="fact"><strong>Madrid, Spain</strong><span>ES · EN · FR</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== Experience ===================== -->
+    <section class="card" id="experience" aria-labelledby="experience-title">
+      <div class="section-head">
+        <span class="eyebrow">Experience</span>
+        <h2 id="experience-title">Where I've been working</h2>
+      </div>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Software Engineer <span class="where">· GMV, Galileo Project</span></h3>
+          <span class="when">Sep 2021 – Present</span>
+        </div>
+        <ul class="bullets">
+          <li>Integrated and validated software modules in embedded systems for mission-critical environments, ensuring real-time performance and deterministic behaviour in satellite navigation systems.</li>
+          <li>Configured and secured core infrastructure services (DNS, LDAP, PKI, firewalling, networking) in controlled and security-sensitive environments.</li>
+          <li>Applied security hardening guidelines across multiple systems, aligned with security baselines and compliance requirements.</li>
+          <li>Worked under strict regulatory frameworks (ECSS), ensuring high standards of reliability, safety and security.</li>
+          <li>Troubleshot complex system-level issues across networking, authentication and service integration layers.</li>
+          <li>Acted as SAFe Team Coach, driving agile adoption, facilitating ceremonies and improving delivery in cross-functional teams.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job-head">
+          <h3>Kafka &amp; distributed systems</h3>
+          <span class="when">Area of expertise</span>
+        </div>
+        <ul class="bullets">
+          <li>Designed and implemented end-to-end Apache Kafka architectures: cluster configuration (KRaft), topic management, acknowledgments, quotas and performance tuning.</li>
+          <li>Implemented TLS encryption and SASL authentication (PLAIN, OAUTHBEARER).</li>
+          <li>Configured and managed Confluent Schema Registry (Avro/JSON) in both connected and air-gapped environments.</li>
+          <li>Developed Kafka producers and consumers in Go with Confluent libraries, including custom message formats and partitioning strategies.</li>
+          <li>Troubleshot and optimised Kafka connectivity, broker configuration and client behaviour; cross-cluster replication with MirrorMaker 2.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Kafka</span><span class="tag">KRaft</span><span class="tag">MirrorMaker 2</span>
+          <span class="tag">Schema Registry</span><span class="tag">TLS / SASL</span><span class="tag">Go</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== Projects ===================== -->
+    <section class="card" id="projects" aria-labelledby="projects-title">
+      <div class="section-head">
+        <span class="eyebrow">Projects</span>
+        <h2 id="projects-title">Selected work</h2>
+      </div>
+
+      <article class="featured">
+        <span class="eyebrow">Master's thesis</span>
+        <h3>Automated Capture The Flag environment</h3>
+        <p>
+          Design, deployment and resolution of a vulnerable CTF lab for ethical-hacking training and technical
+          assessment. Multiple intentionally vulnerable services (DNS, LDAP, FTP, SSH and a Flask web app) are
+          provisioned as infrastructure as code, covering the full pentesting cycle: reconnaissance,
+          exploitation, post-exploitation and privilege escalation.
+        </p>
+        <div class="tags">
+          <span class="tag">Vagrant</span><span class="tag">Ansible</span><span class="tag">VirtualBox</span>
+          <span class="tag">Ubuntu 22.04</span><span class="tag">Flask</span><span class="tag">Pentesting</span>
+        </div>
+        <div class="actions">
+          <a class="text-link" href="https://github.com/david10923/Master/tree/main/TFM" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+          <a class="text-link" href="https://github.com/david10923/Master/blob/main/TFM/Memoria_TFM.pdf" target="_blank" rel="noopener noreferrer">Thesis (PDF) ↗</a>
+        </div>
+      </article>
+
+      <h3 class="group-title">Cybersecurity — M.Sc. coursework (IMF &amp; Deloitte)</h3>
+      <div class="grid">
+        <a class="project" href="https://github.com/david10923/Master/blob/main/M1.%20Ciberinteligencia/ciberinteligencia.pdf" target="_blank" rel="noopener noreferrer">
+          <h3>Cyber Intelligence <span class="arrow">↗</span></h3>
+          <p>OSINT, threat analysis and tracking techniques.</p>
+        </a>
+        <a class="project" href="https://github.com/david10923/Master/blob/main/M2.%20Hacking%20%C3%A9tico/hacking_%C3%A9tico.pdf" target="_blank" rel="noopener noreferrer">
+          <h3>Ethical Hacking <span class="arrow">↗</span></h3>
+          <p>Reconnaissance, exploitation and post-exploitation.</p>
+        </a>
+        <a class="project" href="https://github.com/david10923/Master/blob/main/M3.%20Desarrollo%20seguro/desarrollo_seguro.pdf" target="_blank" rel="noopener noreferrer">
+          <h3>Secure Development <span class="arrow">↗</span></h3>
+          <p>Secure coding principles and source-code auditing.</p>
+        </a>
+        <a class="project" href="https://github.com/david10923/Master/blob/main/M4.%20Tecnolog%C3%ADas%20SIEM/tecnolog%C3%ADas_SIEM.pdf" target="_blank" rel="noopener noreferrer">
+          <h3>SIEM <span class="arrow">↗</span></h3>
+          <p>Splunk and ELK, event correlation and log analysis.</p>
+        </a>
+        <a class="project" href="https://github.com/david10923/Master/blob/main/M5.%20Ingenier%C3%ADa%20inversa/ingenieria_inversa.pdf" target="_blank" rel="noopener noreferrer">
+          <h3>Reverse Engineering <span class="arrow">↗</span></h3>
+          <p>Static and dynamic binary analysis.</p>
+        </a>
+        <a class="project" href="https://github.com/david10923/Master/blob/main/M6.%20Seguridad%20en%20smartphones/seguridad_smartphones.pdf" target="_blank" rel="noopener noreferrer">
+          <h3>Smartphone Security <span class="arrow">↗</span></h3>
+          <p>Android/iOS app analysis and mobile reversing.</p>
+        </a>
+        <a class="project" href="https://github.com/david10923/Master/blob/main/M7.%20An%C3%A1lisis%20forense/an%C3%A1lisis_forense.pdf" target="_blank" rel="noopener noreferrer">
+          <h3>Forensic Analysis <span class="arrow">↗</span></h3>
+          <p>Evidence analysis and forensic timelines.</p>
+        </a>
+      </div>
+
+      <h3 class="group-title">Software — university projects</h3>
+      <div class="grid">
+        <a class="project" href="https://github.com/david10923/AW" target="_blank" rel="noopener noreferrer">
+          <h3>404 <span class="arrow">↗</span></h3>
+          <p>Q&amp;A web app for web developers — a simplified Stack Overflow with accounts, voting, tags, reputation and badges.</p>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">Web</span></div>
+        </a>
+        <a class="project" href="https://github.com/david10923/Diet-Now" target="_blank" rel="noopener noreferrer">
+          <h3>Diet Now <span class="arrow">↗</span></h3>
+          <p>Team project: an Android app backed by Spring and Node.js services over MySQL.</p>
+          <div class="tags"><span class="tag">Android</span><span class="tag">Java</span><span class="tag">Spring</span></div>
+        </a>
+        <a class="project" href="https://github.com/david10923/FarmaciaUpgraded" target="_blank" rel="noopener noreferrer">
+          <h3>Farmacia <span class="arrow">↗</span></h3>
+          <p>Pharmacy management application with a DAO-based persistence layer.</p>
+          <div class="tags"><span class="tag">Java</span><span class="tag">DAO</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== Skills ===================== -->
+    <section class="card" id="skills" aria-labelledby="skills-title">
+      <div class="section-head">
+        <span class="eyebrow">Skills</span>
+        <h2 id="skills-title">Core technologies</h2>
+      </div>
+      <div class="skills">
+        <div class="skill-row"><strong>Messaging</strong><div class="tags"><span class="tag">Apache Kafka</span><span class="tag">MirrorMaker 2</span><span class="tag">Confluent Schema Registry</span></div></div>
+        <div class="skill-row"><strong>Security</strong><div class="tags"><span class="tag">TLS</span><span class="tag">SASL</span><span class="tag">LDAP</span><span class="tag">Kerberos</span><span class="tag">OAuth2</span><span class="tag">PKI</span></div></div>
+        <div class="skill-row"><strong>Automation</strong><div class="tags"><span class="tag">Ansible</span><span class="tag">Bash</span><span class="tag">Vagrant</span></div></div>
+        <div class="skill-row"><strong>Infrastructure</strong><div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">VMware</span></div></div>
+        <div class="skill-row"><strong>Systems</strong><div class="tags"><span class="tag">Linux</span><span class="tag">Windows Server</span></div></div>
+        <div class="skill-row"><strong>Programming</strong><div class="tags"><span class="tag">C++</span><span class="tag">C</span><span class="tag">Java</span><span class="tag">Go</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">SQL</span></div></div>
+        <div class="skill-row"><strong>CI/CD &amp; tools</strong><div class="tags"><span class="tag">Jenkins</span><span class="tag">Git</span><span class="tag">Rundeck</span></div></div>
+        <div class="skill-row"><strong>Forensics</strong><div class="tags"><span class="tag">Autopsy</span><span class="tag">CAINE</span><span class="tag">RegRipper</span><span class="tag">Hayabusa</span><span class="tag">NTFS Forensic Tools</span></div></div>
+        <div class="skill-row"><strong>Reverse engineering</strong><div class="tags"><span class="tag">IDA</span><span class="tag">Jadx</span><span class="tag">apktool</span></div></div>
+        <div class="skill-row"><strong>Pentesting &amp; monitoring</strong><div class="tags"><span class="tag">Metasploit</span><span class="tag">Wireshark</span><span class="tag">Splunk</span></div></div>
+      </div>
+    </section>
+
+    <!-- ===================== Education & languages ===================== -->
+    <section class="card" id="education" aria-labelledby="education-title">
+      <div class="two-col">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Education</span>
+            <h2 id="education-title">Studies</h2>
+          </div>
+          <div class="entry">
+            <h3>M.Sc. in Cybersecurity</h3>
+            <p>IMF Smart Education &amp; Deloitte · 2023 – 2025</p>
+          </div>
+          <div class="entry">
+            <h3>B.Sc. in Software Engineering</h3>
+            <p>Universidad Complutense de Madrid · 2017 – 2022</p>
+          </div>
+        </div>
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Languages</span>
+            <h2>Spoken</h2>
+          </div>
+          <div class="lang"><span>Spanish</span><span>Native</span></div>
+          <div class="lang"><span>English</span><span>B2 – C1</span></div>
+          <div class="lang"><span>French</span><span>B2</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> David Fernández Alejo · Built with plain HTML, CSS &amp; JavaScript · Hosted on GitHub Pages</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var KEY = 'dfa.theme';
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+  var icon = document.getElementById('theme-icon');
+  var osDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function isDark() {
+    if (root.dataset.theme === 'dark') return true;
+    if (root.dataset.theme === 'light') return false;
+    return osDark.matches;
+  }
+  function paintIcon() {
+    var dark = isDark();
+    icon.textContent = dark ? '☀️' : '🌙';
+    toggle.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+  }
+
+  toggle.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem(KEY, next); } catch (e) { /* no persistence, still works */ }
+    paintIcon();
+  });
+
+  /* Follow the OS live until the visitor picks a theme. */
+  osDark.addEventListener('change', function () {
+    if (!root.dataset.theme) paintIcon();
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  paintIcon();
+})();
+</script>
+</body>
+</html>
