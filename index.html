@@ -292,6 +292,85 @@
 
   .footer { text-align: center; color: var(--muted); font-size: .82rem; }
 
+  /* ---------- Boot screen (always dark, regardless of theme) ---------- */
+  .boot { display: none; }
+  .booting body { overflow: hidden; }
+  .booting .boot {
+    position: fixed; inset: 0; z-index: 1000;
+    display: grid; place-items: center;
+    background: radial-gradient(ellipse at 50% 40%, #151836 0%, #07080c 65%);
+    color: #c7d2fe;
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Liberation Mono", monospace;
+    overflow: hidden;
+    cursor: pointer;
+    transition: opacity .8s ease, transform .8s ease, filter .8s ease;
+  }
+  .boot-rain {      /* blurred "hacker screen", fainter in the centre so the name stays readable */
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    opacity: .3;
+    filter: blur(2.5px);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, .25) 0%, #000 70%);
+            mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, .25) 0%, #000 70%);
+  }
+  .boot::after {    /* scanlines */
+    content: "";
+    position: absolute; inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .035) 0 1px, transparent 1px 3px);
+  }
+  .boot.leaving { opacity: 0; transform: scale(1.06); filter: blur(12px); }
+
+  .boot-inner { position: relative; z-index: 1; width: min(440px, 86vw); }
+  .boot-label { font-size: .7rem; letter-spacing: .32em; color: #22d3ee; opacity: .85; }
+  .boot-name {
+    margin: 8px 0 18px;
+    font-size: clamp(2.1rem, 10vw, 3.4rem); font-weight: 700; letter-spacing: .04em;
+    line-height: 1.15;
+    color: #e0e7ff;
+    text-shadow: 0 0 18px rgba(129, 140, 248, .55);
+    white-space: nowrap;
+  }
+  .boot-name .scr { color: #22d3ee; opacity: .7; }
+  .boot-name::after { content: "_"; color: #22d3ee; animation: boot-blink .8s steps(1) infinite; }
+  .boot-name.resolved {
+    background: linear-gradient(90deg, #818cf8, #c084fc, #22d3ee);
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 14px rgba(129, 140, 248, .5));
+  }
+
+  .boot-bar { height: 2px; border-radius: 2px; background: rgba(129, 140, 248, .18); overflow: hidden; }
+  .boot-bar span {
+    display: block; width: 0; height: 100%;
+    background: linear-gradient(90deg, #4f46e5, #c084fc, #22d3ee);
+    box-shadow: 0 0 12px #818cf8;
+  }
+  .boot-meta { display: flex; justify-content: space-between; margin-top: 8px; font-size: .7rem; letter-spacing: .12em; color: #8b93b5; }
+
+  .boot-log { list-style: none; margin: 18px 0 0; padding: 0; min-height: 6.4em; font-size: .76rem; line-height: 1.6; color: #8b93b5; }
+  .boot-log li { opacity: 0; transform: translateX(-6px); transition: opacity .25s, transform .25s; }
+  .boot-log li.on { opacity: 1; transform: none; }
+  .boot-log b { color: #34d399; font-weight: 500; }
+  .boot-found { opacity: 0; transition: opacity .2s; }
+  .boot-found.on { opacity: 1; }
+
+  .boot-skip {
+    position: absolute; left: 0; right: 0; bottom: 22px; z-index: 1;
+    text-align: center; font-size: .66rem; letter-spacing: .22em; color: #5b6285;
+  }
+
+  @keyframes boot-blink { 50% { opacity: 0; } }
+
+  /* Content entrance once the boot screen leaves */
+  .booted .hero,
+  .booted main > section,
+  .booted .footer { animation: rise .7s cubic-bezier(.2, .7, .2, 1) both; }
+  .booted main > section:nth-child(1) { animation-delay: .08s; }
+  .booted main > section:nth-child(n+2) { animation-delay: .16s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
   @media (max-width: 640px) {
     .two-col { grid-template-columns: 1fr; }
     .skill-row { grid-template-columns: 1fr; }
@@ -315,9 +394,37 @@
       if (saved === 'dark' || saved === 'light') document.documentElement.dataset.theme = saved;
     } catch (e) { /* storage unavailable: follow the OS preference */ }
   })();
+
+  /* Boot screen: only with JS and full motion. The failsafe guarantees a script
+     error can never leave the page locked behind the overlay. */
+  (function () {
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var root = document.documentElement;
+    root.classList.add('booting');
+    setTimeout(function () { root.classList.remove('booting'); }, 6000);
+  })();
 </script>
 </head>
 <body>
+
+<!-- ===================== Boot screen ===================== -->
+<div class="boot" id="boot" role="status" aria-label="Loading portfolio">
+  <canvas class="boot-rain" id="boot-rain" aria-hidden="true"></canvas>
+  <div class="boot-inner" aria-hidden="true">
+    <div class="boot-label">INITIALIZING PORTFOLIO</div>
+    <div class="boot-name" id="boot-name">david10923</div>
+    <div class="boot-bar"><span id="boot-bar"></span></div>
+    <div class="boot-meta"><span>BRUTE FORCE</span><span id="boot-pct">000%</span></div>
+    <ul class="boot-log" id="boot-log">
+      <li>&gt; scanning target · <b>443/tcp open</b></li>
+      <li>&gt; applying brute force · <b>rockyou.txt</b></li>
+      <li>&gt; attempts <span id="boot-tries">0</span><b class="boot-found" id="boot-found"> · password found</b></li>
+      <li>&gt; access <b>granted</b></li>
+    </ul>
+  </div>
+  <div class="boot-skip" aria-hidden="true">CLICK OR PRESS ANY KEY TO SKIP</div>
+</div>
+
 <div class="wrap">
 
   <!-- ===================== Header ===================== -->
@@ -595,6 +702,134 @@
 
   document.getElementById('year').textContent = new Date().getFullYear();
   paintIcon();
+
+  /* ---------- Boot screen ---------- */
+  var boot = document.getElementById('boot');
+  if (root.classList.contains('booting')) runBoot();
+  else boot.remove();
+
+  function runBoot() {
+    var TARGET   = 'david10923';
+    var GLYPHS   = '#%&*+=<>/[]{}01?!$';
+    var DURATION = 2000;              // progress bar, ms
+    var LOCK_AT  = 300, LOCK_STEP = 90;  // when each character settles, ms
+    var LOG_AT   = [.08, .28, .45, .94];  // progress at which each log line appears
+    var FOUND_AT = .86;                  // brute-force counter stops and "password found" shows
+    var TRIES    = 1337042;
+
+    var nameEl = document.getElementById('boot-name');
+    var bar    = document.getElementById('boot-bar');
+    var pct    = document.getElementById('boot-pct');
+    var lines  = document.querySelectorAll('#boot-log li');
+    var tries  = document.getElementById('boot-tries');
+    var found  = document.getElementById('boot-found');
+    var start = null, lastScramble = 0, resolvedAt = 0, finished = false;
+
+    /* Matrix-style rain on a canvas. Old glyphs are faded towards transparent
+       (destination-out) so the CSS gradient behind stays visible. It keeps falling
+       while the overlay blurs away, until the overlay is removed. */
+    var canvas = document.getElementById('boot-rain');
+    var ctx    = canvas.getContext && canvas.getContext('2d');
+    var RAIN   = 'アカサタナハマヤラワヲン0123456789ABCDEF<>/{}[]#$%*+=';
+    var CELL   = 16, drops = [], lastRain = 0;
+
+    function sizeRain() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width  = innerWidth * dpr;
+      canvas.height = innerHeight * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.font = '14px ui-monospace, Consolas, monospace';
+      var cols = Math.ceil(innerWidth / CELL);
+      while (drops.length < cols) drops.push(-Math.random() * 30);  // staggered entry from above
+      drops.length = cols;
+    }
+
+    function rain(now) {
+      if (!boot.isConnected) { window.removeEventListener('resize', sizeRain); return; }
+      requestAnimationFrame(rain);
+      if (now - lastRain < 33) return;   // ~30 fps is plenty behind a blur
+      lastRain = now;
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0, 0, 0, .12)';
+      ctx.fillRect(0, 0, innerWidth, innerHeight);
+      ctx.globalCompositeOperation = 'source-over';
+      for (var i = 0; i < drops.length; i++) {
+        var y = drops[i] * CELL;
+        ctx.fillStyle = Math.random() < .1 ? '#d1fae5' : '#34d399';
+        ctx.fillText(RAIN[Math.floor(Math.random() * RAIN.length)], i * CELL, y);
+        if (y > innerHeight && Math.random() > .975) drops[i] = 0;
+        drops[i] += 1;
+      }
+    }
+
+    if (ctx) {
+      sizeRain();
+      window.addEventListener('resize', sizeRain);
+      requestAnimationFrame(rain);
+    }
+
+    /* One span per character; textContent only, so glyphs like < or & are safe. */
+    nameEl.textContent = '';
+    var spans = [];
+    for (var i = 0; i < TARGET.length; i++) {
+      var s = document.createElement('span');
+      s.className = 'scr';
+      nameEl.appendChild(s);
+      spans.push(s);
+    }
+
+    function frame(now) {
+      if (finished) return;
+      if (start === null) start = now;
+      var t = now - start;
+
+      if (now - lastScramble > 45) {
+        lastScramble = now;
+        for (var i = 0; i < spans.length; i++) {
+          if (t >= LOCK_AT + i * LOCK_STEP) {
+            spans[i].textContent = TARGET[i];
+            spans[i].className = '';
+          } else {
+            spans[i].textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+          }
+        }
+      }
+
+      var p = Math.min(1, t / DURATION);
+      var eased = 1 - Math.pow(1 - p, 2.2);
+      bar.style.width = (eased * 100).toFixed(1) + '%';
+      pct.textContent = ('00' + Math.round(eased * 100)).slice(-3) + '%';
+      for (var j = 0; j < lines.length; j++) {
+        if (p >= LOG_AT[j]) lines[j].classList.add('on');
+      }
+      var k = Math.min(1, Math.max(0, (p - LOG_AT[2]) / (FOUND_AT - LOG_AT[2])));
+      tries.textContent = Math.round(Math.pow(k, 1.4) * TRIES).toLocaleString('en-US');
+      if (p >= FOUND_AT) found.classList.add('on');
+
+      if (p >= 1) {
+        if (!resolvedAt) { resolvedAt = now; nameEl.classList.add('resolved'); }
+        if (now - resolvedAt > 380) return finish();
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function finish() {
+      if (finished) return;
+      finished = true;
+      window.removeEventListener('keydown', finish);
+      nameEl.textContent = TARGET;
+      root.classList.add('booted');
+      boot.classList.add('leaving');
+      setTimeout(function () {
+        boot.remove();
+        root.classList.remove('booting');
+      }, 800);
+    }
+
+    boot.addEventListener('click', finish);
+    window.addEventListener('keydown', finish);
+    requestAnimationFrame(frame);
+  }
 })();
 </script>
 </body>
