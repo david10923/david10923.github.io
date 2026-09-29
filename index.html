@@ -251,6 +251,19 @@
     margin: 0 0 12px;
   }
   .group-title:not(:first-child) { margin-top: 26px; }
+  .group-note { margin: -6px 0 12px; color: var(--muted); font-size: .86rem; }
+
+  .job-note { margin: -4px 0 16px; color: var(--muted); font-size: .9rem; }
+  .job-group {
+    margin: 18px 0 8px;
+    font-size: .92rem; font-weight: 600;
+    color: var(--accent);
+  }
+  .job-group:first-of-type { margin-top: 0; }
+
+  /* Cards for work that has no public repository */
+  .project-static { cursor: default; }
+  .project-static:hover { border-color: var(--border); background: transparent; transform: none; }
 
   .grid {
     display: grid;
@@ -462,7 +475,7 @@
         <svg class="ico-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.4-1.27.73-1.56-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
         GitHub
       </a>
-      <a href="https://linkedin.com/in/david-f-0748981b8" target="_blank" rel="noopener noreferrer">
+      <a href="https://linkedin.com/in/david10923" target="_blank" rel="noopener noreferrer">
         <svg class="ico-fill" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.64h.05c.53-1 1.83-2.06 3.76-2.06 4.02 0 4.76 2.65 4.76 6.09V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21h-4V9Z"/></svg>
         LinkedIn
       </a>
@@ -486,21 +499,21 @@
         <h2 id="about-title">Secure platforms for mission-critical systems</h2>
       </div>
       <p>
-        Platform and Security Engineer with hands-on experience in <strong>Apache Kafka</strong>, secure
-        infrastructure and mission-critical environments. Skilled in authentication and authorization
-        (LDAP, Kerberos, OAuth2), system hardening, automation and troubleshooting across distributed systems.
+        Platform and Security Engineer with <strong>5 years at GMV</strong> in the space sector
+        (<strong>Galileo</strong> programme), operating services in mission-critical, controlled and
+        air-gapped environments.
       </p>
       <p>
-        At GMV I work on the <strong>Galileo</strong> satellite navigation programme, operating services in
-        controlled and air-gapped environments under strict regulatory frameworks. I hold a B.Sc. in Software
-        Engineering from Universidad Complutense de Madrid and an M.Sc. in Cybersecurity from IMF Smart
-        Education &amp; Deloitte.
+        My work centres on <strong>Apache Kafka</strong> platforms (KRaft, TLS/SASL, Schema Registry,
+        MirrorMaker 2), identity and access management (LDAP, Kerberos, OAuth2, PKI), system hardening and
+        automation. SAFe Team Coach since 2024, and M.Sc. in Cybersecurity from IMF Smart Education
+        &amp; Deloitte.
       </p>
       <div class="facts">
-        <div class="fact"><strong>GMV · Galileo</strong><span>Since September 2021</span></div>
+        <div class="fact"><strong>5 years at GMV</strong><span>Galileo programme</span></div>
+        <div class="fact"><strong>SAFe Team Coach</strong><span>Since 2024</span></div>
         <div class="fact"><strong>M.Sc. Cybersecurity</strong><span>IMF &amp; Deloitte</span></div>
-        <div class="fact"><strong>Apache Kafka</strong><span>Security &amp; operations</span></div>
-        <div class="fact"><strong>Madrid, Spain</strong><span>ES · EN · FR</span></div>
+        <div class="fact"><strong>Madrid, Spain</strong><span>ES · EN (C1) · FR (B2)</span></div>
       </div>
     </section>
 
@@ -516,31 +529,42 @@
           <h3>Software Engineer <span class="where">· GMV, Galileo Project</span></h3>
           <span class="when">Sep 2021 – Present</span>
         </div>
+        <p class="job-note">SAFe Team Coach alongside the engineering role since 2024.</p>
+
+        <h4 class="job-group">Apache Kafka platform</h4>
         <ul class="bullets">
-          <li>Integrated and validated software modules in embedded systems for mission-critical environments, ensuring real-time performance and deterministic behaviour in satellite navigation systems.</li>
+          <li>Designed and implemented end-to-end Apache Kafka architectures: KRaft cluster configuration, topic management, acknowledgments, quotas and performance tuning.</li>
+          <li>Secured Kafka with TLS encryption and SASL authentication (PLAIN, OAUTHBEARER).</li>
+          <li>Configured and managed Confluent Schema Registry (Avro, JSON) in both connected and air-gapped environments.</li>
+          <li>Developed Kafka producers and consumers in Go with Confluent libraries, including custom message formats and partitioning strategies.</li>
+          <li>Set up cross-cluster replication with MirrorMaker 2, and troubleshot broker configuration, connectivity and client behaviour in distributed environments.</li>
+        </ul>
+
+        <h4 class="job-group">Secure infrastructure and automation</h4>
+        <ul class="bullets">
           <li>Configured and secured core infrastructure services (DNS, LDAP, PKI, firewalling, networking) in controlled and security-sensitive environments.</li>
           <li>Applied security hardening guidelines across multiple systems, aligned with security baselines and compliance requirements.</li>
-          <li>Worked under strict regulatory frameworks (ECSS), ensuring high standards of reliability, safety and security.</li>
+          <li>Operated services on VMware ESXi virtualised infrastructure, including out-of-band server management via HPE iLO.</li>
+          <li>Contributed to Jenkins CI/CD pipelines for automated deployments.</li>
           <li>Troubleshot complex system-level issues across networking, authentication and service integration layers.</li>
-          <li>Acted as SAFe Team Coach, driving agile adoption, facilitating ceremonies and improving delivery in cross-functional teams.</li>
         </ul>
-      </article>
 
-      <article class="job">
-        <div class="job-head">
-          <h3>Kafka &amp; distributed systems</h3>
-          <span class="when">Area of expertise</span>
-        </div>
+        <h4 class="job-group">Mission-critical software</h4>
         <ul class="bullets">
-          <li>Designed and implemented end-to-end Apache Kafka architectures: cluster configuration (KRaft), topic management, acknowledgments, quotas and performance tuning.</li>
-          <li>Implemented TLS encryption and SASL authentication (PLAIN, OAUTHBEARER).</li>
-          <li>Configured and managed Confluent Schema Registry (Avro/JSON) in both connected and air-gapped environments.</li>
-          <li>Developed Kafka producers and consumers in Go with Confluent libraries, including custom message formats and partitioning strategies.</li>
-          <li>Troubleshot and optimised Kafka connectivity, broker configuration and client behaviour; cross-cluster replication with MirrorMaker 2.</li>
+          <li>Integrated and validated software modules in embedded systems for satellite navigation, ensuring real-time performance and deterministic behaviour.</li>
+          <li>Worked to ECSS space engineering standards, ensuring high levels of reliability, safety and security.</li>
         </ul>
+
+        <h4 class="job-group">Team coaching (SAFe)</h4>
+        <ul class="bullets">
+          <li>Driving agile adoption, facilitating ceremonies and improving delivery in cross-functional teams.</li>
+        </ul>
+
         <div class="tags">
           <span class="tag">Kafka</span><span class="tag">KRaft</span><span class="tag">MirrorMaker 2</span>
           <span class="tag">Schema Registry</span><span class="tag">TLS / SASL</span><span class="tag">Go</span>
+          <span class="tag">VMware ESXi</span><span class="tag">HPE iLO</span><span class="tag">Jenkins</span>
+          <span class="tag">ECSS</span><span class="tag">SAFe</span>
         </div>
       </article>
     </section>
@@ -570,6 +594,35 @@
           <a class="text-link" href="https://github.com/david10923/Master/blob/main/TFM/Memoria_TFM.pdf" target="_blank" rel="noopener noreferrer">Thesis (PDF) ↗</a>
         </div>
       </article>
+
+      <h3 class="group-title">Personal projects — self-directed, under continuous development</h3>
+      <p class="group-note">Focused on self-hosting, secure network exposure and backend design. Repositories are private; happy to walk through the details.</p>
+      <div class="grid">
+        <div class="project project-static">
+          <h3>Self-hosted infrastructure</h3>
+          <p>Containerised services on a personal Linux server, used to practise deployment, service isolation and least-privilege exposure: private access over a mesh VPN, public access through a tunnel instead of open inbound ports, and a proxy mediating container access to the Docker socket.</p>
+          <div class="tags">
+            <span class="tag">Ubuntu Server</span><span class="tag">Docker Compose</span>
+            <span class="tag">Tailscale</span><span class="tag">Cloudflare Tunnel</span>
+          </div>
+        </div>
+        <div class="project project-static">
+          <h3>Backend and API design</h3>
+          <p>An API-first application to explore domain modelling, schema migrations and deterministic calculation engines designed as pure functions, so results can be fully recomputed from source data rather than stored as state.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLAlchemy</span>
+            <span class="tag">SQLite</span><span class="tag">React PWA</span>
+          </div>
+        </div>
+        <div class="project project-static">
+          <h3>Data collection and observability</h3>
+          <p>An automated collection pipeline feeding a time-series database, with scheduled jobs and Grafana dashboards: instrumenting systems, keeping historical data and making trends visible.</p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">TimescaleDB</span>
+            <span class="tag">Grafana</span><span class="tag">Docker Compose</span>
+          </div>
+        </div>
+      </div>
 
       <h3 class="group-title">Cybersecurity — M.Sc. coursework (IMF &amp; Deloitte)</h3>
       <div class="grid">
@@ -630,16 +683,14 @@
         <h2 id="skills-title">Core technologies</h2>
       </div>
       <div class="skills">
-        <div class="skill-row"><strong>Messaging</strong><div class="tags"><a class="tag" href="https://kafka.apache.org/" target="_blank" rel="noopener noreferrer">Apache Kafka</a><a class="tag" href="https://kafka.apache.org/documentation/#georeplication" target="_blank" rel="noopener noreferrer">MirrorMaker 2</a><a class="tag" href="https://docs.confluent.io/platform/current/schema-registry/index.html" target="_blank" rel="noopener noreferrer">Confluent Schema Registry</a></div></div>
-        <div class="skill-row"><strong>Security</strong><div class="tags"><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc8446" target="_blank" rel="noopener noreferrer">TLS</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc4422" target="_blank" rel="noopener noreferrer">SASL</a><a class="tag" href="https://www.openldap.org/" target="_blank" rel="noopener noreferrer">LDAP</a><a class="tag" href="https://web.mit.edu/kerberos/" target="_blank" rel="noopener noreferrer">Kerberos</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc6749" target="_blank" rel="noopener noreferrer">OAuth2</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc5280" target="_blank" rel="noopener noreferrer">PKI</a></div></div>
-        <div class="skill-row"><strong>Automation</strong><div class="tags"><a class="tag" href="https://www.ansible.com/" target="_blank" rel="noopener noreferrer">Ansible</a><a class="tag" href="https://www.gnu.org/software/bash/" target="_blank" rel="noopener noreferrer">Bash</a><a class="tag" href="https://developer.hashicorp.com/vagrant" target="_blank" rel="noopener noreferrer">Vagrant</a></div></div>
-        <div class="skill-row"><strong>Infrastructure</strong><div class="tags"><a class="tag" href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a><a class="tag" href="https://kubernetes.io/" target="_blank" rel="noopener noreferrer">Kubernetes</a><a class="tag" href="https://www.vmware.com/" target="_blank" rel="noopener noreferrer">VMware</a></div></div>
-        <div class="skill-row"><strong>Systems</strong><div class="tags"><a class="tag" href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">Linux</a><a class="tag" href="https://learn.microsoft.com/windows-server/" target="_blank" rel="noopener noreferrer">Windows Server</a></div></div>
-        <div class="skill-row"><strong>Programming</strong><div class="tags"><a class="tag" href="https://en.cppreference.com/w/cpp" target="_blank" rel="noopener noreferrer">C++</a><a class="tag" href="https://en.cppreference.com/w/c" target="_blank" rel="noopener noreferrer">C</a><a class="tag" href="https://dev.java/" target="_blank" rel="noopener noreferrer">Java</a><a class="tag" href="https://go.dev/" target="_blank" rel="noopener noreferrer">Go</a><a class="tag" href="https://www.python.org/" target="_blank" rel="noopener noreferrer">Python</a><a class="tag" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">JavaScript</a><a class="tag" href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">SQL</a></div></div>
-        <div class="skill-row"><strong>CI/CD &amp; tools</strong><div class="tags"><a class="tag" href="https://www.jenkins.io/" target="_blank" rel="noopener noreferrer">Jenkins</a><a class="tag" href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a><a class="tag" href="https://www.rundeck.com/" target="_blank" rel="noopener noreferrer">Rundeck</a></div></div>
-        <div class="skill-row"><strong>Forensics</strong><div class="tags"><a class="tag" href="https://www.autopsy.com/" target="_blank" rel="noopener noreferrer">Autopsy</a><a class="tag" href="https://www.caine-live.net/" target="_blank" rel="noopener noreferrer">CAINE</a><a class="tag" href="https://github.com/keydet89/RegRipper3.0" target="_blank" rel="noopener noreferrer">RegRipper</a><a class="tag" href="https://github.com/Yamato-Security/hayabusa" target="_blank" rel="noopener noreferrer">Hayabusa</a><a class="tag" href="https://learn.microsoft.com/windows-server/storage/file-server/ntfs-overview" target="_blank" rel="noopener noreferrer">NTFS Forensic Tools</a></div></div>
-        <div class="skill-row"><strong>Reverse engineering</strong><div class="tags"><a class="tag" href="https://hex-rays.com/ida-pro/" target="_blank" rel="noopener noreferrer">IDA</a><a class="tag" href="https://github.com/skylot/jadx" target="_blank" rel="noopener noreferrer">Jadx</a><a class="tag" href="https://apktool.org/" target="_blank" rel="noopener noreferrer">apktool</a></div></div>
-        <div class="skill-row"><strong>Pentesting &amp; monitoring</strong><div class="tags"><a class="tag" href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer">Metasploit</a><a class="tag" href="https://www.wireshark.org/" target="_blank" rel="noopener noreferrer">Wireshark</a><a class="tag" href="https://www.splunk.com/" target="_blank" rel="noopener noreferrer">Splunk</a></div></div>
+        <div class="skill-row"><strong>Streaming &amp; messaging</strong><div class="tags"><a class="tag" href="https://kafka.apache.org/" target="_blank" rel="noopener noreferrer">Apache Kafka</a><a class="tag" href="https://kafka.apache.org/documentation/#kraft" target="_blank" rel="noopener noreferrer">KRaft</a><a class="tag" href="https://kafka.apache.org/documentation/#georeplication" target="_blank" rel="noopener noreferrer">MirrorMaker 2</a><a class="tag" href="https://docs.confluent.io/platform/current/schema-registry/index.html" target="_blank" rel="noopener noreferrer">Confluent Schema Registry</a><a class="tag" href="https://avro.apache.org/" target="_blank" rel="noopener noreferrer">Avro</a></div></div>
+        <div class="skill-row"><strong>Security &amp; IAM</strong><div class="tags"><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc8446" target="_blank" rel="noopener noreferrer">TLS</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc4422" target="_blank" rel="noopener noreferrer">SASL</a><a class="tag" href="https://www.openldap.org/" target="_blank" rel="noopener noreferrer">LDAP</a><a class="tag" href="https://web.mit.edu/kerberos/" target="_blank" rel="noopener noreferrer">Kerberos</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc6749" target="_blank" rel="noopener noreferrer">OAuth2</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc5280" target="_blank" rel="noopener noreferrer">PKI</a></div></div>
+        <div class="skill-row"><strong>Infrastructure</strong><div class="tags"><a class="tag" href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">Linux</a><a class="tag" href="https://learn.microsoft.com/windows-server/" target="_blank" rel="noopener noreferrer">Windows Server</a><a class="tag" href="https://www.vmware.com/products/cloud-infrastructure/vsphere" target="_blank" rel="noopener noreferrer">VMware ESXi</a><a class="tag" href="https://en.wikipedia.org/wiki/HP_Integrated_Lights-Out" target="_blank" rel="noopener noreferrer">HPE iLO</a><a class="tag" href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a><a class="tag" href="https://docs.docker.com/compose/" target="_blank" rel="noopener noreferrer">Docker Compose</a><a class="tag" href="https://kubernetes.io/" target="_blank" rel="noopener noreferrer">Kubernetes</a></div></div>
+        <div class="skill-row"><strong>Automation &amp; CI/CD</strong><div class="tags"><a class="tag" href="https://www.ansible.com/" target="_blank" rel="noopener noreferrer">Ansible</a><a class="tag" href="https://www.gnu.org/software/bash/" target="_blank" rel="noopener noreferrer">Bash</a><a class="tag" href="https://www.jenkins.io/" target="_blank" rel="noopener noreferrer">Jenkins</a><a class="tag" href="https://www.rundeck.com/" target="_blank" rel="noopener noreferrer">Rundeck</a><a class="tag" href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a><a class="tag" href="https://developer.hashicorp.com/vagrant" target="_blank" rel="noopener noreferrer">Vagrant</a></div></div>
+        <div class="skill-row"><strong>Monitoring &amp; SIEM</strong><div class="tags"><a class="tag" href="https://www.splunk.com/" target="_blank" rel="noopener noreferrer">Splunk</a><a class="tag" href="https://grafana.com/" target="_blank" rel="noopener noreferrer">Grafana</a><a class="tag" href="https://www.wireshark.org/" target="_blank" rel="noopener noreferrer">Wireshark</a></div></div>
+        <div class="skill-row"><strong>Offensive &amp; forensics</strong><div class="tags"><a class="tag" href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer">Metasploit</a><a class="tag" href="https://hex-rays.com/ida-pro/" target="_blank" rel="noopener noreferrer">IDA</a><a class="tag" href="https://github.com/skylot/jadx" target="_blank" rel="noopener noreferrer">Jadx</a><a class="tag" href="https://apktool.org/" target="_blank" rel="noopener noreferrer">apktool</a><a class="tag" href="https://www.autopsy.com/" target="_blank" rel="noopener noreferrer">Autopsy</a><a class="tag" href="https://www.caine-live.net/" target="_blank" rel="noopener noreferrer">CAINE</a><a class="tag" href="https://github.com/keydet89/RegRipper3.0" target="_blank" rel="noopener noreferrer">RegRipper</a><a class="tag" href="https://github.com/Yamato-Security/hayabusa" target="_blank" rel="noopener noreferrer">Hayabusa</a></div></div>
+        <div class="skill-row"><strong>Programming</strong><div class="tags"><a class="tag" href="https://go.dev/" target="_blank" rel="noopener noreferrer">Go</a><a class="tag" href="https://en.cppreference.com/w/cpp" target="_blank" rel="noopener noreferrer">C++</a><a class="tag" href="https://en.cppreference.com/w/c" target="_blank" rel="noopener noreferrer">C</a><a class="tag" href="https://www.python.org/" target="_blank" rel="noopener noreferrer">Python</a><a class="tag" href="https://dev.java/" target="_blank" rel="noopener noreferrer">Java</a><a class="tag" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">JavaScript</a><a class="tag" href="https://react.dev/" target="_blank" rel="noopener noreferrer">React</a><a class="tag" href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">SQL</a></div></div>
+        <div class="skill-row"><strong>Standards &amp; methods</strong><div class="tags"><a class="tag" href="https://ecss.nl/" target="_blank" rel="noopener noreferrer">ECSS</a><a class="tag" href="https://framework.scaledagile.com/" target="_blank" rel="noopener noreferrer">SAFe</a></div></div>
       </div>
     </section>
 
@@ -658,6 +709,10 @@
           <div class="entry">
             <h3>B.Sc. in Software Engineering</h3>
             <p>Universidad Complutense de Madrid · 2017 – 2022</p>
+          </div>
+          <div class="entry">
+            <h3>Additional training</h3>
+            <p>Kubernetes courses · PUE and Udemy</p>
           </div>
         </div>
         <div>
