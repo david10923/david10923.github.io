@@ -11,6 +11,15 @@
 <meta property="og:description" content="Apache Kafka, secure infrastructure, mission-critical systems and cybersecurity.">
 <!-- Adjust if the repository is not named david10923.github.io -->
 <meta property="og:url" content="https://david10923.github.io/">
+<meta property="og:site_name" content="David Fernández Alejo">
+<meta property="og:image" content="https://david10923.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="David Fernández Alejo — Platform & Security Engineer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="David Fernández Alejo — Platform & Security Engineer">
+<meta name="twitter:description" content="Apache Kafka, secure infrastructure, mission-critical systems and cybersecurity.">
+<meta name="twitter:image" content="https://david10923.github.io/og-image.png">
 <link rel="canonical" href="https://david10923.github.io/">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='32' fill='%234f46e5'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Segoe UI,Arial' font-weight='700' font-size='26' fill='white'>DF</text></svg>">
 <style>
@@ -279,6 +288,8 @@
   .skill-row > strong { font-size: .92rem; }
   .skill-row .tags { margin-top: 0; }
   .skill-row .tag { background: var(--surface-2); color: var(--text); font-weight: 450; }
+  a.tag { text-decoration: none; transition: background .18s, color .18s, box-shadow .18s; }
+  a.tag:hover { background: var(--accent-soft); color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
 
   /* ---------- Education & languages ---------- */
   .two-col { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
@@ -619,16 +630,16 @@
         <h2 id="skills-title">Core technologies</h2>
       </div>
       <div class="skills">
-        <div class="skill-row"><strong>Messaging</strong><div class="tags"><span class="tag">Apache Kafka</span><span class="tag">MirrorMaker 2</span><span class="tag">Confluent Schema Registry</span></div></div>
-        <div class="skill-row"><strong>Security</strong><div class="tags"><span class="tag">TLS</span><span class="tag">SASL</span><span class="tag">LDAP</span><span class="tag">Kerberos</span><span class="tag">OAuth2</span><span class="tag">PKI</span></div></div>
-        <div class="skill-row"><strong>Automation</strong><div class="tags"><span class="tag">Ansible</span><span class="tag">Bash</span><span class="tag">Vagrant</span></div></div>
-        <div class="skill-row"><strong>Infrastructure</strong><div class="tags"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">VMware</span></div></div>
-        <div class="skill-row"><strong>Systems</strong><div class="tags"><span class="tag">Linux</span><span class="tag">Windows Server</span></div></div>
-        <div class="skill-row"><strong>Programming</strong><div class="tags"><span class="tag">C++</span><span class="tag">C</span><span class="tag">Java</span><span class="tag">Go</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">SQL</span></div></div>
-        <div class="skill-row"><strong>CI/CD &amp; tools</strong><div class="tags"><span class="tag">Jenkins</span><span class="tag">Git</span><span class="tag">Rundeck</span></div></div>
-        <div class="skill-row"><strong>Forensics</strong><div class="tags"><span class="tag">Autopsy</span><span class="tag">CAINE</span><span class="tag">RegRipper</span><span class="tag">Hayabusa</span><span class="tag">NTFS Forensic Tools</span></div></div>
-        <div class="skill-row"><strong>Reverse engineering</strong><div class="tags"><span class="tag">IDA</span><span class="tag">Jadx</span><span class="tag">apktool</span></div></div>
-        <div class="skill-row"><strong>Pentesting &amp; monitoring</strong><div class="tags"><span class="tag">Metasploit</span><span class="tag">Wireshark</span><span class="tag">Splunk</span></div></div>
+        <div class="skill-row"><strong>Messaging</strong><div class="tags"><a class="tag" href="https://kafka.apache.org/" target="_blank" rel="noopener noreferrer">Apache Kafka</a><a class="tag" href="https://kafka.apache.org/documentation/#georeplication" target="_blank" rel="noopener noreferrer">MirrorMaker 2</a><a class="tag" href="https://docs.confluent.io/platform/current/schema-registry/index.html" target="_blank" rel="noopener noreferrer">Confluent Schema Registry</a></div></div>
+        <div class="skill-row"><strong>Security</strong><div class="tags"><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc8446" target="_blank" rel="noopener noreferrer">TLS</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc4422" target="_blank" rel="noopener noreferrer">SASL</a><a class="tag" href="https://www.openldap.org/" target="_blank" rel="noopener noreferrer">LDAP</a><a class="tag" href="https://web.mit.edu/kerberos/" target="_blank" rel="noopener noreferrer">Kerberos</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc6749" target="_blank" rel="noopener noreferrer">OAuth2</a><a class="tag" href="https://datatracker.ietf.org/doc/html/rfc5280" target="_blank" rel="noopener noreferrer">PKI</a></div></div>
+        <div class="skill-row"><strong>Automation</strong><div class="tags"><a class="tag" href="https://www.ansible.com/" target="_blank" rel="noopener noreferrer">Ansible</a><a class="tag" href="https://www.gnu.org/software/bash/" target="_blank" rel="noopener noreferrer">Bash</a><a class="tag" href="https://developer.hashicorp.com/vagrant" target="_blank" rel="noopener noreferrer">Vagrant</a></div></div>
+        <div class="skill-row"><strong>Infrastructure</strong><div class="tags"><a class="tag" href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">Docker</a><a class="tag" href="https://kubernetes.io/" target="_blank" rel="noopener noreferrer">Kubernetes</a><a class="tag" href="https://www.vmware.com/" target="_blank" rel="noopener noreferrer">VMware</a></div></div>
+        <div class="skill-row"><strong>Systems</strong><div class="tags"><a class="tag" href="https://www.kernel.org/" target="_blank" rel="noopener noreferrer">Linux</a><a class="tag" href="https://learn.microsoft.com/windows-server/" target="_blank" rel="noopener noreferrer">Windows Server</a></div></div>
+        <div class="skill-row"><strong>Programming</strong><div class="tags"><a class="tag" href="https://en.cppreference.com/w/cpp" target="_blank" rel="noopener noreferrer">C++</a><a class="tag" href="https://en.cppreference.com/w/c" target="_blank" rel="noopener noreferrer">C</a><a class="tag" href="https://dev.java/" target="_blank" rel="noopener noreferrer">Java</a><a class="tag" href="https://go.dev/" target="_blank" rel="noopener noreferrer">Go</a><a class="tag" href="https://www.python.org/" target="_blank" rel="noopener noreferrer">Python</a><a class="tag" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">JavaScript</a><a class="tag" href="https://en.wikipedia.org/wiki/SQL" target="_blank" rel="noopener noreferrer">SQL</a></div></div>
+        <div class="skill-row"><strong>CI/CD &amp; tools</strong><div class="tags"><a class="tag" href="https://www.jenkins.io/" target="_blank" rel="noopener noreferrer">Jenkins</a><a class="tag" href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a><a class="tag" href="https://www.rundeck.com/" target="_blank" rel="noopener noreferrer">Rundeck</a></div></div>
+        <div class="skill-row"><strong>Forensics</strong><div class="tags"><a class="tag" href="https://www.autopsy.com/" target="_blank" rel="noopener noreferrer">Autopsy</a><a class="tag" href="https://www.caine-live.net/" target="_blank" rel="noopener noreferrer">CAINE</a><a class="tag" href="https://github.com/keydet89/RegRipper3.0" target="_blank" rel="noopener noreferrer">RegRipper</a><a class="tag" href="https://github.com/Yamato-Security/hayabusa" target="_blank" rel="noopener noreferrer">Hayabusa</a><a class="tag" href="https://learn.microsoft.com/windows-server/storage/file-server/ntfs-overview" target="_blank" rel="noopener noreferrer">NTFS Forensic Tools</a></div></div>
+        <div class="skill-row"><strong>Reverse engineering</strong><div class="tags"><a class="tag" href="https://hex-rays.com/ida-pro/" target="_blank" rel="noopener noreferrer">IDA</a><a class="tag" href="https://github.com/skylot/jadx" target="_blank" rel="noopener noreferrer">Jadx</a><a class="tag" href="https://apktool.org/" target="_blank" rel="noopener noreferrer">apktool</a></div></div>
+        <div class="skill-row"><strong>Pentesting &amp; monitoring</strong><div class="tags"><a class="tag" href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer">Metasploit</a><a class="tag" href="https://www.wireshark.org/" target="_blank" rel="noopener noreferrer">Wireshark</a><a class="tag" href="https://www.splunk.com/" target="_blank" rel="noopener noreferrer">Splunk</a></div></div>
       </div>
     </section>
 
@@ -655,7 +666,7 @@
             <h2>Spoken</h2>
           </div>
           <div class="lang"><span>Spanish</span><span>Native</span></div>
-          <div class="lang"><span>English</span><span>B2 – C1</span></div>
+          <div class="lang"><span>English</span><span>C1</span></div>
           <div class="lang"><span>French</span><span>B2</span></div>
         </div>
       </div>
